@@ -23,7 +23,7 @@ public class AnimalTest {
     @Test
     public void Animal_instantiatesCorrectly_true(){
         Animal animal = new Animal("Chui");
-        assertEquals(true, animal instanceof  Animal);
+        assertEquals(true, animal instanceof Animal);
     }
     @Test
     public void Animal_instantiatesWithName_String() {
