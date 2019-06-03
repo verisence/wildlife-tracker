@@ -12,6 +12,7 @@ public class Sighting {
     private int rangerId;
     private int locationId;
     private Timestamp date;
+    private String animalType;
 
     public Sighting(int animalId, int rangerId, int locationId){
         this.animalId = animalId;
@@ -40,14 +41,44 @@ public class Sighting {
         return DateFormat.getDateInstance().format(this.date);
     }
 
+    public String getAnimalType() {
+        return this.animalType;
+    }
+
+    public String getLocationName() {
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT name FROM locations WHERE id=:id")
+                    .addParameter("id", this.locationId)
+                    .executeAndFetchFirst(String.class);
+        }
+    }
+
+    public String getAnimalName() {
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT name FROM animals WHERE id=:id AND type=:type")
+                    .addParameter("id", this.animalId)
+                    .executeAndFetchFirst(String.class);
+        }
+    }
+
+    public String getRangerName() {
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT name FROM rangers WHERE id=:id")
+                    .addParameter("id", this.rangerId)
+                    .executeAndFetchFirst(String.class);
+        }
+    }
+
     public void save(){
         try(Connection con = DB.sql2o.open()){
-            String sql = "INSERT INTO sightings (animalid, rangerid, locationid, date) VALUES(:animalid, :rangerid, " +
-                    ":locationid, now())";
+            String sql = "INSERT INTO sightings (animalid, rangerid, locationid, date, animaltype) VALUES(:animalid, " +
+                    ":rangerid, " +
+                    ":locationid, now(), :animalType)";
             this.id = (int) con.createQuery(sql,true)
                     .addParameter("animalid", this.animalId)
                     .addParameter("rangerid", this.rangerId)
                     .addParameter("locationid", this.locationId)
+                    .addParameter("animaltype", this.animalType)
                     .executeUpdate()
                     .getKey();
         }
@@ -57,6 +88,22 @@ public class Sighting {
 
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery("SELECT * FROM sightings")
+                    .executeAndFetch(Sighting.class);
+        }
+    }
+
+    public static List<Sighting> allAnimals() {
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT * FROM sightings WHERE animalType=:type")
+                    .addParameter("type", Animal.ANIMAL_TYPE)
+                    .executeAndFetch(Sighting.class);
+        }
+    }
+
+    public static List<Sighting> allEndangered() {
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT * FROM sightings WHERE animalType=:type")
+                    .addParameter("type", EndangeredAnimal.ANIMAL_TYPE)
                     .executeAndFetch(Sighting.class);
         }
     }
