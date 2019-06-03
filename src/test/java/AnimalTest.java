@@ -57,7 +57,7 @@ public class AnimalTest {
     }
     @Test
     public void equals_returnsTrueIfAnimalsAreSame(){
-        Animal animalOne = new  Animal("Chui");
+        Animal animalOne = new Animal("Chui");
         Animal animalTwo = new Animal("Chui");
         assertTrue(animalOne.equals(animalTwo));
     }

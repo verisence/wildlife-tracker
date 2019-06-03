@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Animal {
-    private int id;
+    public int id;
     public String name;
     public String type;
     public static final String ANIMAL_TYPE = "animal";
@@ -52,16 +52,17 @@ public class Animal {
     public static List<Animal> all(){
 
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT id, name, type FROM animals";
+            String sql = "SELECT * FROM animals";
             return con.createQuery(sql).executeAndFetch(Animal.class);
         }
     }
 
     public static Animal find(int id){
         try(Connection con = DB.sql2o.open()){
-            String sql = "SELECT * FROM animals where id=:id";
+            String sql = "SELECT * FROM animals where id=:id AND type=:type";
             return con.createQuery(sql)
                     .addParameter("id", id)
+                    .addParameter("type", "animal")
                     .throwOnMappingFailure(false)
                     .executeAndFetchFirst(Animal.class);
         }
