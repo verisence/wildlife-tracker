@@ -2,7 +2,9 @@ import org.sql2o.Connection;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.List;
+import java.util.Date;
 
 public class Sighting {
     private int id;
@@ -15,6 +17,7 @@ public class Sighting {
         this.animalId = animalId;
         this.rangerId = rangerId;
         this.locationId = locationId;
+        this.date = new Timestamp(new Date().getDay());
     }
 
     public int getId() {
@@ -31,6 +34,10 @@ public class Sighting {
 
     public int getLocationId() {
         return locationId;
+    }
+
+    public String getDate(){
+        return DateFormat.getDateInstance().format(this.date);
     }
 
     public void save(){
