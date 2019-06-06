@@ -152,7 +152,7 @@ public class App{
             Ranger ranger = Ranger.find(Integer.parseInt(request.params(":id")));
             model.put("ranger", ranger);
             model.put("rangers", Ranger.all());
-            model.put("template", "templates/edit-ranger.vtl");
+            model.put("template", "templates/edit-ranger-form.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
