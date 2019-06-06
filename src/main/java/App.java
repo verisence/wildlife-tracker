@@ -62,8 +62,8 @@ public class App{
             Map<String, Object> model = new HashMap<String, Object>();
             Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
             String name = request.queryParams("name");
-            model.put("animals", Animal.all());
             animal.update(name);
+            model.put("animals", Animal.all());
             model.put("template", "templates/animals.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
