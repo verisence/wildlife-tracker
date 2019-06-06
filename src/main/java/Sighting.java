@@ -56,11 +56,19 @@ public class Sighting {
 
     public String getAnimalName() {
         try(Connection con = DB.sql2o.open()) {
-            return con.createQuery("SELECT name FROM animals WHERE id=:id AND type=:type")
+            return con.createQuery("SELECT name FROM animals WHERE id=:id")
                     .addParameter("id", this.animalId)
                     .executeAndFetchFirst(String.class);
         }
     }
+
+//    public String getAnimalName() {
+//        try(Connection con = DB.sql2o.open()) {
+//            return con.createQuery("SELECT name FROM animals WHERE id=:id AND type=:type")
+//                    .addParameter("id", this.animalId)
+//                    .executeAndFetchFirst(String.class);
+//        }
+//    }
 
     public String getRangerName() {
         try(Connection con = DB.sql2o.open()) {

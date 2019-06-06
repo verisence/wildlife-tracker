@@ -54,7 +54,7 @@ public class Location {
         }
     }
 
-    public void update(String name, int badgeNumber){
+    public void update(String name){
         try(Connection con = DB.sql2o.open()){
             String sql = "UPDATE locations SET name = :name WHERE id = :id";
             con.createQuery(sql)

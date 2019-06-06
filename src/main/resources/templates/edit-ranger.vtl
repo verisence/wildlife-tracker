@@ -1,8 +1,8 @@
-<h1>Add a Ranger</h1>
+<h1>Edit a Ranger</h1>
 
-<p>Add ranger here:</p>
+<p>Edit ranger here:</p>
 
-<form action="/rangers" method="post">
+<form action="/rangers/$ranger.getId()/edit" method="post">
       <div class="form-group">
           <label for="name">Ranger Name</label>
           <input id="name" name="name" type="text" class="form-control">
@@ -11,5 +11,5 @@
           <label for="badge">Badge Number</label>
           <input id="badge" name="badge" type="text" class="form-control">
       </div>
-  <button type="submit" class="btn btn-unique">Add Ranger</button>
+  <button type="submit" class="btn btn-unique">Edit Ranger</button>
 </form>
