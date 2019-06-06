@@ -1,0 +1,28 @@
+a{
+  color: #022c43;
+}
+.sizer{
+  height: 40px;
+}
+
+.footer{
+    height:50px;
+}
+
+.card-narrow{
+    display: inline-block;
+    width : 250px;
+}
+
+.navbar-toggler{color:#000}
+
+/* FONTS */
+.main-body{
+    min-height: 800px;
+
+}
+
+
+font-family: 'Slabo 27px', serif;
+font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Istok Web', sans-serif;

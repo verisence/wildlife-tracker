@@ -57,7 +57,9 @@ public class EndangeredAnimal extends Animal {
 
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT name, type FROM animals WHERE type=:type";
-            return con.createQuery(sql).executeAndFetch(EndangeredAnimal.class);
+            return con.createQuery(sql)
+                    .addParameter("type", "endangered")
+                    .executeAndFetch(EndangeredAnimal.class);
         }
     }
 

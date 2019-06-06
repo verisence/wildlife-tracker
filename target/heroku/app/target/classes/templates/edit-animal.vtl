@@ -1,0 +1,11 @@
+<h1>Edit a Non-Endangered Animal</h1>
+
+<p>Edit the animal here:</p>
+
+<form action="/animals/$animal.getId()/edit" method="post">
+      <div class="form-group">
+          <label for="name">Animal Name</label>
+          <input id="name" name="name" type="text" class="form-control">
+      </div>
+  <button type="submit" class="btn btn-unique">Edit Animal</button>
+</form>

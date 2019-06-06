@@ -80,9 +80,9 @@ public class LocationTest {
     }
     @Test
     public void update_updateLocation_true(){
-        Location location = new Location("Donson");
+        Location location = new Location("Capstone");
         location.save();
-        location.update("Simon", 90899);
+        location.update("Capstone");
     }
     @Test
     public void delete_deletesLocation_true(){

@@ -91,14 +91,16 @@ public class EndangeredAnimalTest {
         assertEquals(EndangeredAnimal.allEndangered().get(0), endangeredAnimalOne);
         assertEquals(EndangeredAnimal.allEndangered().get(1), endangeredAnimalTwo);
     }
-    @Test
-    public void save_assignsIdToObject() {
-        EndangeredAnimal endangeredAnimal = new EndangeredAnimal("Chui", EndangeredAnimal.ADULT,
-                EndangeredAnimal.ILL);
-        endangeredAnimal.saveEndangered();
-        EndangeredAnimal savedEndangeredAnimal = EndangeredAnimal.allEndangered().get(0);
-        assertEquals(endangeredAnimal.getId(), savedEndangeredAnimal.getId());
-    }
+//    @Test
+//    public void save_assignsIdToObject() {
+//        EndangeredAnimal endangeredAnimal = new EndangeredAnimal("Chui", EndangeredAnimal.ADULT,
+//                EndangeredAnimal.ILL);
+//        endangeredAnimal.saveEndangered();
+//        EndangeredAnimal savedEndangeredAnimal = EndangeredAnimal.allEndangered().get(0);
+//        assertEquals(endangeredAnimal.getId(), savedEndangeredAnimal.getId());
+//
+//
+//    }
     @Test
     public void update_updateEndangeredAnimal_true(){
         EndangeredAnimal endangeredAnimal = new EndangeredAnimal("Chui", EndangeredAnimal.ADULT,

@@ -1,0 +1,41 @@
+<h1>All locations</h1>
+
+  #foreach ($location in $locations)
+
+
+    <!-- Card Regular -->
+    <div class="card card-cascade card-narrow">
+
+      <!-- Card image -->
+      <div class="view view-cascade overlay">
+        <img class="card-img-top" src="https://images.pexels.com/photos/1078850/pexels-photo-1078850.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
+
+        <!-- Title -->
+        <h4 class="card-title"><strong>$location.getName()</strong></h4>
+        <!-- Subtitle -->
+        <h6 class="font-weight-bold indigo-text py-2">$location.getName()</h6>
+        <!-- Text -->
+        <br>
+
+        <br>
+        <a href="/locations/$location.getId()/edit"><button class="btn btn-unique">Edit location</button></a>
+         <form action="/locations/$location.getId()/delete" method="post">
+            <a href="/locations/$location.getId()/delete"><button class="btn btn-danger">Delete location</button></a>
+         </form>
+      </div>
+
+    </div>
+    <!-- Card Regular -->
+
+
+  #end
+<div class="row text-center">
+<a href="/locations/new"><button class="btn btn-unique">Add New Location</button></a>
+</div>
