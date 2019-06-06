@@ -14,11 +14,12 @@ public class Sighting {
     private Timestamp date;
     private String animalType;
 
-    public Sighting(int animalId, int rangerId, int locationId){
+    public Sighting(int animalId, int rangerId, int locationId, String animalType){
         this.animalId = animalId;
         this.rangerId = rangerId;
         this.locationId = locationId;
-        this.date = new Timestamp(new Date().getDay());
+        this.date = new Timestamp(new Date().getTime());
+        this.animalType = animalType;
     }
 
     public int getId() {
@@ -71,14 +72,16 @@ public class Sighting {
 
     public void save(){
         try(Connection con = DB.sql2o.open()){
-            String sql = "INSERT INTO sightings (animalid, rangerid, locationid, date, animaltype) VALUES(:animalid, " +
-                    ":rangerid, " +
-                    ":locationid, now(), :animalType)";
+            String sql = "INSERT INTO sightings (animalId, rangerId, locationId, date, animalType) VALUES (:animalId," +
+                    " " +
+                    ":rangerId, :locationId, :date, :animalType)";
             this.id = (int) con.createQuery(sql,true)
-                    .addParameter("animalid", this.animalId)
-                    .addParameter("rangerid", this.rangerId)
-                    .addParameter("locationid", this.locationId)
-                    .addParameter("animaltype", this.animalType)
+                    .addParameter("animalId", this.animalId)
+                    .addParameter("rangerId", this.rangerId)
+                    .addParameter("locationId", this.locationId)
+                    .addParameter("date", this.date)
+                    .addParameter("animalType", this.animalType)
+                    .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
         }
@@ -129,21 +132,21 @@ public class Sighting {
         }
     }
 
-    public void update(int animalId, int locationId, int rangerId){
-        try(Connection con = DB.sql2o.open()){
-            String sql = "UPDATE sightings SET animalId = :animalId, locationId = :locationId, rangerId = :rangerId, " +
-                    "date = now()" +
-                    " WHERE id" +
-                    " = " +
-                    ":id";
-            con.createQuery(sql)
-                    .addParameter("animalId", animalId)
-                    .addParameter("locationId", locationId)
-                    .addParameter("rangerId", rangerId)
-                    .addParameter("id", id)
-                    .executeUpdate();
-        }
-    }
+//    public void update(int animalId, int locationId, int rangerId, String animalType){
+//        try(Connection con = DB.sql2o.open()){
+//            String sql = "UPDATE sightings SET animalId = :animalId, rangerId = :rangerId, locationId = :locationId, " +
+//                    " animalType = :animalType  WHERE id" +
+//                    " = " +
+//                    ":id";
+//            con.createQuery(sql)
+//                    .addParameter("animalId", animalId)
+//                    .addParameter("rangerId", rangerId)
+//                    .addParameter("locationId", locationId)
+//                    .addParameter("animalType", animalType)
+//                    .throwOnMappingFailure(false)
+//                    .executeUpdate();
+//        }
+//    }
 
     public void delete() {
         try(Connection con = DB.sql2o.open()){
