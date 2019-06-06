@@ -56,7 +56,7 @@ public class EndangeredAnimal extends Animal {
     public static List<EndangeredAnimal> allEndangered(){
 
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT id, name, age, health, type FROM animals";
+            String sql = "SELECT name, type FROM animals WHERE type=:type";
             return con.createQuery(sql).executeAndFetch(EndangeredAnimal.class);
         }
     }
@@ -71,4 +71,6 @@ public class EndangeredAnimal extends Animal {
                     .executeAndFetchFirst(Animal.class);
         }
     }
+
+
 }

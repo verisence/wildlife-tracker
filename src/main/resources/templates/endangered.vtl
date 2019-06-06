@@ -1,6 +1,6 @@
 <h1>All animals</h1>
 
-  #foreach ($animal in $animals)
+  #foreach ($endangered in $endangered)
 
 
     <!-- Card Regular -->
@@ -18,16 +18,15 @@
       <div class="card-body card-body-cascade text-center">
 
         <!-- Title -->
-        <h4 class="card-title"><strong>$animal.getName()</strong></h4>
+        <h4 class="card-title"><strong>$endangered.getName()</strong></h4>
         <!-- Subtitle -->
-        <h6 class="font-weight-bold indigo-text py-2">$animal.getType()</h6>
+        <h6 class="font-weight-bold indigo-text py-2">$endangered.getType()</h6>
         <!-- Text -->
         <br>
 
         <br>
-        <a href="/animals/$animal.getId()/edit"><button class="btn btn-unique">Edit animal</button></a>
-         <form action="/animals/$animal.getId()/delete" method="post">
-            <a href="/animals/$animal.getId()/delete"><button class="btn btn-danger">Delete animal</button></a>
+         <form action="/endangered/$endangered.getId()/delete" method="post">
+            <a href="/endangered/$endangered.getId()/delete"><button class="btn btn-danger">Delete animal</button></a>
          </form>
       </div>
 
