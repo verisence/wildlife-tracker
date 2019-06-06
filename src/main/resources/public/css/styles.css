@@ -9,6 +9,11 @@ a{
 
 }
 
+.card-narrow{
+    display: inline-block;
+    width : 250px;
+}
+
 .navbar-toggler{color:#000}
 
 /* FONTS */

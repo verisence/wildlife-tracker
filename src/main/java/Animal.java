@@ -52,8 +52,11 @@ public class Animal {
     public static List<Animal> all(){
 
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animals";
-            return con.createQuery(sql).executeAndFetch(Animal.class);
+            String sql = "SELECT * FROM animals WHERE type=:type";
+            return con.createQuery(sql)
+                    .addParameter("type", "animal")
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Animal.class);
         }
     }
 

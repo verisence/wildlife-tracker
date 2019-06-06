@@ -1,0 +1,41 @@
+<h1>All animals</h1>
+
+  #foreach ($animal in $animals)
+
+
+    <!-- Card Regular -->
+    <div class="card card-cascade card-narrow">
+
+      <!-- Card image -->
+      <div class="view view-cascade overlay">
+        <img class="card-img-top" src="https://images.pexels.com/photos/6169/woman-hand-girl-professional.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
+
+        <!-- Title -->
+        <h4 class="card-title"><strong>$animal.getName()</strong></h4>
+        <!-- Subtitle -->
+        <h6 class="font-weight-bold indigo-text py-2">$animal.getType()</h6>
+        <!-- Text -->
+        <br>
+
+        <br>
+        <a href="/animals/$animal.getId()/edit"><button class="btn btn-unique">Edit animal</button></a>
+         <form action="/animals/$animal.getId()/delete" method="post">
+            <a href="/animals/$animal.getId()/delete"><button class="btn btn-danger">Delete animal</button></a>
+         </form>
+      </div>
+
+    </div>
+    <!-- Card Regular -->
+
+
+  #end
+<div class="row text-center">
+<a href="/animals/new"><button class="btn btn-unique">Add New animal</button></a>
+</div>
